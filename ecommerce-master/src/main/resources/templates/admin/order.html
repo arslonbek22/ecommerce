@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+<th:block  th:insert="fragments::header"/>
+
+
+<div class="row">
+    <div class="col-9">
+        <table class="table table-stripped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orders:${order}">
+                <td th:text="${orders.id}"></td>
+                <td th:text="${orders.getOrderedAt()}"></td>
+            <td>
+                <a class="btn  btn-info text-white" th:href="|/order/info/${orders.id}|"> Info</a>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+</body>
+</html>

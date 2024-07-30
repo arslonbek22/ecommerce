@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<style>
+    .sidebar{
+        height: 100vh;
+    }
+</style>
+
+<style>
+    .list-group {
+        a {
+            text-decoration: none;
+        }
+    }
+</style>
+<th:block th:insert="fragments::header"/>
+
+<div class="row">
+
+    <div class="col-3 sidebar bg-dark text-white">
+        <div class="card">
+            <ul class="list-group">
+                <a href="?">
+                    <li th:class="|text-dark list-group-item ${categoryID == null ? 'active' : ''}|">All Product</li>
+                </a>
+                <a th:href="|?categoryID=${category.id}|" th:each="category : ${categories}" class="text-dark">
+                    <li th:text="${category.name}" th:class="|list-group-item ${category.id == categoryID ? 'active' : ''}|"></li>
+                </a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-9 p-2">
+        <div class="row">
+            <div class="col-2" th:each="product : ${products}">
+                <div class="card ">
+                    <div class="card-body  d-flex justify-content-center">
+                        <img height="100px" style="width: 80%;" th:src="|/file/product/${product.id}|">
+                    </div>
+                    <div class="card-footer">
+                        <p th:text="${product.name}"></p>
+                        Price: <span th:text="${product.price}">price</span>
+                        <hr>
+                        <form action="/basket" method="post">
+                            <input type="hidden" name="productID" th:value="${product.id}">
+                        <button th:unless="${product.hasInBasket}" class="btn btn-dark">Add to basket</button>
+                        </form>
+                        <form action="/basket/delete" method="post" >
+                            <input type="hidden" name="productID" th:value="${product.id}">
+                            <button th:if="${product.hasInBasket}" class="btn bg-danger text-dark">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

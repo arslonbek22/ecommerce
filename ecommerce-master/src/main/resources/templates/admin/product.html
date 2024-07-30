@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<style>
+    .saider{
+        height: 100vh;
+    }
+</style>
+
+
+<style>
+    .list-group {
+        a {
+            text-decoration: none;
+        }
+    }
+</style>
+
+
+
+<th:block  th:insert="fragments::header"/>
+<div class="row">
+    <th:block  th:insert="fragments::sider-admin"/>
+    <div class="col-9 p-2">
+        <a class="btn btn-success text-white" href="/admin/product/create">Add Product</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Created At</th>
+                <th>Photo</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product:${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td th:text="${product.created_at}"></td>
+                <td>
+                    <img width="70" height="70" th:src="|/file/product/${product.id}|" alt="Rasm kelmadi">
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-info">edit</button>
+                        <button class="btn btn-danger">delete</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

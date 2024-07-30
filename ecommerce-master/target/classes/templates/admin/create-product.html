@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<style>
+  .list-group {
+    a {
+      text-decoration: none;
+    }
+  }
+</style>
+
+
+<div class="col-6 offset-3">
+  <form action="/product" method="post" enctype="multipart/form-data">
+    <div class="card">
+      <div class="card-body">
+        Create Product
+      </div>
+      <div class="card-body">
+        <input type="file" name="file">
+        <input name="name" type="text" placeholder="Product Name" class="form-control">
+        <input name="price" type="number" placeholder="Product Price" class="form-control">
+        <select name="categoryID" class="form-control">
+          <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+</body>
+</html>

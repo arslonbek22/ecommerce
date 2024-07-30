@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<style>
+    .list-group-item {
+        a {
+            text-decoration: none;
+        }
+    }
+</style>
+
+
+<div th:fragment="header" class="bg-dark">
+    <div class="container">
+        <div class="bg-dark text-white row px-3">
+            <div class="col-1">
+                <a href="/" class="text-white">
+                    <h1>Ecommerce</h1>
+                </a>
+            </div>
+            <div class="col-6 offset-5">
+                <ul style="height: 100%" class="list-unstyled d-flex align-items-center justify-content-center">
+                    <a th:if="${basketSize != null}" href="/basket">
+                        <li class="mx-3 text-white">Basket <span th:text="${basketSize}"></span></li>
+                    </a>
+
+                    <a href="/auth/login" methods="get">
+                        <li th:if="${user==null}" th:text="Login" class="mx-3 text-white"></li>
+                    </a>
+                    <a href="/admin/category">
+                        <li class="mx-3 text-white">Admin menu</li>
+                    </a>
+                    <a href="/order">Orders</a>
+                    <a href="/auth/register" methods="get">
+                        <li class="mx-3 text-white">Register</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:fragment="sider-admin" class="col-3 saider bg-dark">
+    <div class="card">
+        <ul class="list-group">
+                <a href="/admin/category" class="text-dark">
+                    <li class="list-group-item">Category</li>
+                </a>
+
+                <a href="/admin/product" class="text-dark">
+                    <li class="list-group-item">Product</li>
+                </a>
+
+                <a href="/" class="text-dark">
+                    <li class="list-group-item">Home</li>
+                </a>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

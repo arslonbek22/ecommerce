@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<style>
+    .list-group {
+        a {
+            text-decoration: none;
+        }
+    }
+</style>
+
+
+<style>
+    .saider {
+        height: 100vh;
+    }
+</style>
+
+<th:block th:insert="fragments::header"/>
+<div class="row">
+    <th:block th:insert="fragments::sider-admin"/>
+    <div class="col-9 p-2">
+        <a class="btn btn-success text-white" href="/admin/category/create">Add Category</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category:${categories}">
+                <td th:text="${category.id}"></td>
+                <td th:text="${category.name}"></td>
+                <td th:text="${category.created_at}"></td>
+                <td >
+                    <div class="btn-group">
+                        <button class="btn btn-info">edit</button>
+                        <form action="|/admin/category/delete/|" th:value="${category.id}" method="post">
+                            <input type="hidden" th:value="${category.id}">
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

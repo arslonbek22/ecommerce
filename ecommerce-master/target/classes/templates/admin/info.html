@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+<th:block  th:insert="fragments::header"/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order: ${orderProducts}">
+        <td th:text="${order.product.name}"></td>
+        <td th:text="${order.amount}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
